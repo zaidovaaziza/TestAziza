@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "83f3cd52-5253-4b00-9585-be4fb2a773a1",
+		"name": "New collection test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Teacher",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a00c25e2-4c80-4568-8e18-a3bd78a205ca",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const test=pm.response.json();",
+							"pm.test(\"First name is Displayed\", function(){",
+							"pm.expect(test.firstName).to.eql(\"Madham\");",
+							"})",
+							"",
+							"const abc=pm.response.json();",
+							"pm.test(\"Password is Displayed\", function(){",
+							"pm.expect(abc.password).to.eql(\"test\");",
+							"})",
+							"",
+							"const test1=pm.response.json();",
+							"pm.test(\"Phone is Displayed\", function(){",
+							"pm.expect(test1.phone).to.eql(\"7727453232\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"firstName\": \"Madham\",\n   \"lastName\": \"Mask\",\n   \"emailAddress\": \"jackma@gmail.com\",\n   \"joinDate\": \"01/01/2010\",\n   \"password\": \"test\",\n   \"phone\": \"7727453232\",\n   \"subject\": \"Into to Database\",\n   \"gender\": \"Male\",\n   \"department\": \"Computer\",\n   \"birthDate\": \"06/17/2012\",\n   \"salary\": 100000,\n   \"batch\": 10,\n   \"section\": \"AP Learning\",\n   \"premanentAddress\": \"2343 W. California ave, Chicago, IL, 60678\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/teacher/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teacher",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Teacher",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1b261154-d8f5-458f-ab46-781da24c1a3d",
+						"exec": [
+							"var schema={",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"teachers\": {",
+							"      \"type\": \"array\",",
+							"      \"items\": [",
+							"        {",
+							"          \"type\": \"object\",",
+							"          \"properties\": {",
+							"            \"teacherId\": {",
+							"              \"type\": \"integer\"",
+							"            },",
+							"            \"firstName\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"lastName\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"emailAddress\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"joinDate\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"password\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"phone\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"subject\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"gender\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"department\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"birthDate\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"salary\": {",
+							"              \"type\": \"integer\"",
+							"            },",
+							"            \"batch\": {",
+							"              \"type\": \"integer\"",
+							"            },",
+							"            \"section\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"premanentAddress\": {",
+							"              \"type\": \"string\"",
+							"            }",
+							"          },",
+							"          \"required\": [",
+							"            \"teacherId\",",
+							"            \"firstName\",",
+							"            \"lastName\",",
+							"            \"emailAddress\",",
+							"            \"joinDate\",",
+							"            \"password\",",
+							"            \"phone\",",
+							"            \"subject\",",
+							"            \"gender\",",
+							"            \"department\",",
+							"            \"birthDate\",",
+							"            \"salary\",",
+							"            \"batch\",",
+							"            \"section\",",
+							"            \"premanentAddress\"",
+							"          ]",
+							"        }",
+							"      ]",
+							"    }",
+							"  },",
+							"  \"required\": [",
+							"    \"teachers\"",
+							"  ]",
+							"};",
+							"var response=JSON.parse(responseBody);",
+							"tests[\"Schema is Valid\"]=tv4.validate(response, schema);",
+							"console.log(tv4.error);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.cybertektraining.com/teacher/{{teacherID}}",
+					"protocol": "http",
+					"host": [
+						"api",
+						"cybertektraining",
+						"com"
+					],
+					"path": [
+						"teacher",
+						"{{teacherID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
